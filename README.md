@@ -1,10 +1,20 @@
-# Activerecord Todos Part 1 
+# ActiveRecord Todos Part 1 
  
 ##Learning Competencies 
 
+* Model a real world system using ruby code 
+* Translate between different modes of modeling a problem (user stories, diagrams, pseudocode, etc.)
+* Create well-defined classes with a single responsibility
+* Identify and implement classes based on real world requirements
+* Use the model-view-controller pattern to organize code and decouple concerns
+* Model relationships in a relational database (one-to-one, one-to-many, many-to-many)
+* Use Active Record Migrations to create a database
+* Use Active Record Queries to query a database
+* Use Active Record to create Associations between database tables
+
 ##Summary 
 
- This challenge is to build a functioning Todo application using a database and command line interaction. You should leverage what you learned in Todo 1.0 and build upon that design, improving your OO implementation. 
+This challenge is to build a functioning Todo application using a database and command line interaction. You should leverage what you learned in Todo 1.0 and build upon that design, improving your OO implementation. 
 
 From the user's perspective, the final product will look similar to the Todo 1.0.  We are still using the command line and we want to build something that works like this:
 
@@ -15,27 +25,17 @@ $ ruby todo.rb delete <task_id>
 $ ruby todo.rb complete <task_id>
 ```
 
-### Download the Skeleton
+##Releases
 
-[Download this skeleton app](http://cl.ly/0r393G2U3U2K) to help you get started.  Make sure to read the `README.md` file!
+###Release 0 : Up and Running
+* Open the `ar_todo` directory for skeleton code.
+* Run `bundle` from the application root directory
+* Run `$ rake -T ` to see the rake tasks available to you. 
+* Use the  `todo.rb` file in the application root directory, to act as your main program.
+* Look at the README in the skeleton for more information about the purpose of each file.  Spend time looking through the application and familiarizing yourself with each file. 
 
-### Learning Goals
 
-This application has all the moving parts of an MVC application: user input, display code, and data persistence.  In addition it leverages the power of Active Record to manipulate a database of Todo records.
-
-You will need to start with a solid OO design and implement a framework that will allow you to utilize Active Record. 
-
-In your design, it's important to think about what *responsibilities* this application has to fulfill.
-
-Keep things like the [single responsibility principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) and [separation of concerns](http://en.wikipedia.org/wiki/Separation_of_concerns) in mind as you decide what objects and classes belong in your application.
-
-As you work through the iterations, pay close attention to how *change* impacts your application.  When a new feature is added how many files do you have to change?  How frustrating is it to make those changes?
-
-You will be using Git and GitHub to work with your group on this challenge.  Here is the [DBC Git Process](https://gist.github.com/brickthorn/15a83f5d5fd6819a2892) you should follow.  Every member of your group should commit to the code base at least once during the day.    
- 
-## Objectives
-
-### Enumerate the responsibilities
+###Release 1 : Enumerate the responsibilities
 
 Start by enumerating the responsibilities of your TODO application.  These aren't just the user-facing commands like "add", "delete", etc.  They're also back-end responsibilities like reading and writing from the `todo.db` file, parsing command-line arguments, and printing the "interface" to the console.
 
@@ -43,58 +43,25 @@ Use these responsibilities to create pseudocode for your program and to design t
 
 Be sure to have both of these checked off before moving on to code. 
 
-### Create the shell repository for this project.
+###Release 2 : Build the Database
 
-Using the format of the [Student Schema with Active Record] ( https://github.com/dbc-challenges/ar-student-schema) create the files needed for an Active Record project.  At a minimum you should have folders for:  
-* app  
-* app/models  
-* app/controllers  
-* db  
-* db/migrate  
+* Create and run the schema migrations to build your database. Be sure you have designed your database and thought through all the relations.  Then move to active record and build the schema. 
 
-And then create files for:  
-* Class Models  
-* Migrations   
-* Driver code  
+* Use the Faker gem to seed your database.We defined a `rake db:seed` task for you.  All it does is run the code in `db/seeds.rb`. Using Faker, edit `seeds.rb` to create dummy records.  You'll have to put `require 'faker' ` at the top of the `seeds.rb` file.  Feel free to read the `Rakefile` and learn more about how this works.  It won't bite!
 
-Finally, copy the Rakefile from the Student Schema Project and modify it to work with this project.
+###Release 3 : Implement the Commands
 
-**NOTE** Have a teacher check you off on your framework before you go further. 
-
-<!--
-### Clone the shell repository and understand the purpose of each file
-
-We've created a repository with the structure you will need to create an Active Record program.  Open each file in Sublime and read the comments inside.  You should be able to clearly define what code will go in each file BEFORE you start writing code.  Check with a teacher before you proceed. 
-
--->
-
-### Create and run the schema migrations to build your database.
-
-Be sure you have designed your database and thought through all the relations.  Then move to active record and build the schema. 
-
-### Use the Faker gem to seed your database.
-
-We defined a `rake db:seed` task for you.  All it does is run the code in `db/seeds.rb`.
-
-Using Faker, edit `seeds.rb` to create dummy records.  You'll have to put
-
-```ruby
-require 'faker'
-```
-
-at the top of the `seeds.rb` file.  Feel free to read the `Rakefile` and learn more about how this works.  It won't bite!
-
-### Implement the list command
+#### The list command
 
 When you run
 
-```text
+```
 $ ruby todo.rb list
 ```
 
 your application should print out a list of all the TODOs. For example:
 
-```text
+```
 $ ruby todo.rb list
 1. Bake a delicious blueberry-glazed cheesecake
 2. Write up that memo and fax it out
@@ -103,7 +70,7 @@ $ ruby todo.rb list
 
 You'll have to design and build basic controller and model code to make this work.  For example, how does your program know the user wants to "add" a task to their list?
 
-### Implement the add command
+#### The add command
 
 Requirements:
 
@@ -117,7 +84,7 @@ Appended "Walk the dog" to your TODO list...
 $
 ```
 
-### Implement the delete command
+####The delete command
 
 Requirements:
 
@@ -141,7 +108,7 @@ $ ruby todo.rb list
 $
 ```
 
-### Implement completeness
+####The complete command
 
 Requirements:
 
@@ -150,9 +117,18 @@ Requirements:
 
 **Note**: This will require changing the format of `todo.txt` and the code that parses it. 
 
-##Releases
-###Release 0 
 
 ##Optimize Your Learning 
+
+This application has all the moving parts of an MVC application: user input, display code, and data persistence.  In addition it leverages the power of Active Record to manipulate a database of Todo records.
+
+You will need to start with a solid OO design and implement a framework that will allow you to utilize Active Record. 
+
+In your design, it's important to think about what *responsibilities* this application has to fulfill.
+
+Keep things like the [single responsibility principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) and [separation of concerns](http://en.wikipedia.org/wiki/Separation_of_concerns) in mind as you decide what objects and classes belong in your application.
+
+As you work through the iterations, pay close attention to how *change* impacts your application.  When a new feature is added how many files do you have to change?  How frustrating is it to make those changes?
+
 
 ##Resources
