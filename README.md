@@ -2,7 +2,7 @@
  
 ##Learning Competencies 
 
-* Model a real world system using ruby code 
+* Model a simple real-world system in Ruby code 
 * Translate between different modes of modeling a problem (user stories, diagrams, pseudocode, etc.)
 * Create well-defined classes with a single responsibility
 * Identify and implement classes based on real world requirements
