@@ -3,6 +3,13 @@ require 'rspec/core/rake_task'
 
 require_relative 'config/application'
 
+class String
+  def strip_heredoc
+    indent = scan(/^[ \t]*(?=\S)/).min.try(:size) || 0
+    gsub(/^[ \t]{#{indent}}/, '')
+  end
+end
+
 desc "create the database"
 task "db:create" do
   puts "Creating file #{DB_PATH} if it doesn't exist..."
