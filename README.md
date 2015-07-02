@@ -25,7 +25,6 @@ We'll run our program by executing the `runner.rb` file.
 ### Release 0: Add a Task
 ```
 $ bundle exec ruby runner.rb add Walk the dog
-
 Added "Walk the dog".
 ```
 *Figure 1*.  Adding a "Walk the dog" task.
@@ -36,7 +35,6 @@ The first feature to build out is the ability to add tasks.  A user should be ab
 ### Release 1: List the Tasks
 ```
 $ bundle exec ruby runner.rb list
-
 1. Walk the dog
 2. Bake a delicious blueberry-glazed cheesecake
 3. Write up that memo and fax it out
