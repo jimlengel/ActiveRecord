@@ -96,6 +96,26 @@ $ bundle exec ruby runner.rb list completed
 Add a feature that allow for displaying only outstanding or only completed tasks. (see Figure 5)
 
 
+### Release 5: Tagging Tasks and Filtering Lists
+```
+$ bundle exec ruby runner.rb list
+1. [ ] Walk the dog
+2. [X] Bake a delicious blueberry-glazed cheesecake
+
+$ bundle exec ruby runner.rb tag 1 pet-care dog
+Tagged "Walk the dog" with tags: pet-care, dog
+
+$ bundle exec ruby runner.rb tag
+Tags: "dog", "pet-care"
+
+$ bundle exec ruby runner.rb filter dog
+1. [ ] Walk the dog
+```
+*Figure 6*.  Adding tags to a task, viewing tags, and filtering the list of tasks to just those tagged *dog*.
+
+Add tagging and filtering by tags to our application.  Users should be able to add multiple tags to a specific task, view a list of tags that they've added to tasks, and filter their list of task by a specific tag.  (see Figure 6)
+
+
 ## Conclusion
 Sum up the challenge.
 
