@@ -16,8 +16,10 @@ As we work through the releases in this challenge, we'll want to pay close atten
 
 ## Releases
 
-### Pre-release: Description
-If necessary ...
+### Pre-release: Review the Code Base
+This challenge uses a code base similar to ones we've seen in other challenges.  The `Gemfile` specifies the gems the skeleton needs; we need to make sure they're installed on our systems.  And a `Rakefile` is provided.  We can review the tasks that we have available by running `bundle exec rake -T`; all of the tasks we're accustomed to using are available.
+
+We'll run our program by executing the `runner.rb` file.
 
 
 ### Release 0: Description
