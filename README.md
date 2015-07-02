@@ -60,6 +60,24 @@ $ bundle exec ruby runner.rb list
 
 Add a feature that allows users to delete a specific task by running our application with the command line argument *delete* followed by the number displayed next to the task when the list is shown.  (see Figure 3)
 
+
+### Release 3: Completing a Task
+```
+$ bundle exec ruby runner.rb list
+1. [ ] Walk the dog
+2. [ ] Bake a delicious blueberry-glazed cheesecake
+
+$ bundle exec ruby runner.rb complete 2
+Marked "Bake a delicious blueberry-glazed cheesecake" as complete
+
+$ bundle exec ruby runner.rb list
+1. [ ] Walk the dog
+2. [X] Bake a delicious blueberry-glazed cheesecake
+```
+*Figure 4*.  Marking a task as complete.
+
+Now we'll add task completion to our application.  Users should be able to mark tasks as complete by running our application with the command line argument *complete* followed by the number displayed next to the task when the list is shown.  When listing tasks, we'll also want to show users whether or not a task is complete.  (see Figure 4)
+
 ## Conclusion
 Sum up the challenge.
 
