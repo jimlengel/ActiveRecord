@@ -140,7 +140,9 @@ Let's add a help feature.  When users ask for help (see Figure 7), they should s
 
 
 ## Conclusion
-Sum up the challenge.
+This challenge is more open-ended than most other challenges we've encountered.  How was it being directed what to build without much guidance on how to build it?  Was it hard to know where to start?  Did we know which tools would be effective in different situations?  Were we able to make good design decisions or were we more interested in just making it work?
+
+As noted in the *Summary*, this challenge provides a comprehensive look at the material we've covered at Dev Bootcamp.  Reflect back on this challenge.  Where were you strong?  Where do you need to improve?  
 
 
 [POODR]: http://www.poodr.com/
