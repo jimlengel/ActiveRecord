@@ -78,6 +78,24 @@ $ bundle exec ruby runner.rb list
 
 Now we'll add task completion to our application.  Users should be able to mark tasks as complete by running our application with the command line argument *complete* followed by the number displayed next to the task when the list is shown.  When listing tasks, we'll also want to show users whether or not a task is complete.  (see Figure 4)
 
+
+### Release 4: Listing Outstanding and Completed Tasks
+```
+$ bundle exec ruby runner.rb list
+1. [ ] Walk the dog
+2. [X] Bake a delicious blueberry-glazed cheesecake
+
+$ bundle exec ruby runner.rb list outstanding
+1. [ ] Walk the dog
+
+$ bundle exec ruby runner.rb list completed
+2. [X] Bake a delicious blueberry-glazed cheesecake
+```
+*Figure 5*.  Displaying lists of outstanding and completed tasks.
+
+Add a feature that allow for displaying only outstanding or only completed tasks. (see Figure 5)
+
+
 ## Conclusion
 Sum up the challenge.
 
