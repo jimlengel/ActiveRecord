@@ -43,6 +43,23 @@ $ bundle exec ruby runner.rb list
 
 Now that we can add tasks, let's add a feature that allows users to see the tasks that have been created. (see Figure 2)
 
+
+### Release 2: Delete a Task
+```
+$ bundle exec ruby runner.rb list
+1. Walk the dog
+2. Bake a delicious blueberry-glazed cheesecake
+
+$ bundle exec ruby runner.rb delete 2
+Deleted "Bake a delicious blueberry-glazed cheesecake"
+
+$ bundle exec ruby runner.rb list
+1. Walk the dog
+```
+*Figure 3*.  Deleting a task.
+
+Add a feature that allows users to delete a specific task by running our application with the command line argument *delete* followed by the number displayed next to the task when the list is shown.  (see Figure 3)
+
 ## Conclusion
 Sum up the challenge.
 
@@ -50,4 +67,3 @@ Sum up the challenge.
 [POODR]: http://www.poodr.com/
 [Wikipedia SOC]: http://en.wikipedia.org/wiki/Separation_of_concerns
 [Wikipedia SRP]: http://en.wikipedia.org/wiki/Single_responsibility_principle
-
