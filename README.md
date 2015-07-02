@@ -116,6 +116,20 @@ $ bundle exec ruby runner.rb filter dog
 Add tagging and filtering by tags to our application.  Users should be able to add multiple tags to a specific task, view a list of tags that they've added to tasks, and filter their list of task by a specific tag.  (see Figure 6)
 
 
+### Release 6: Support for Multiple Todo Lists
+We need to support multiple todo lists.  For example, a user might have separate *home* and *work* lists.  Where previously all tasks were lumped together, now we want to organize them into specific lists.
+
+Our application will need to support ...
+
+- Creating and deleting todo lists.
+- Viewing a list of existing todo lists.
+- Viewing the tasks in all lists (all, outstanding, completed, or tagged).
+- Viewing tasks in a particular todo list (all, outstanding, completed, or tagged).
+- Adding, deleting, completing, and tagging a task in a particular list.
+
+In order to support this new feature, we'll need to update our interface (i.e., the commands which our application understands).  What would make for intuitive commands?  We should feel free to modify our previous commands if necessary.
+
+
 ## Conclusion
 Sum up the challenge.
 
