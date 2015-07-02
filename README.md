@@ -33,9 +33,17 @@ Added "Walk the dog".
 The first feature to build out is the ability to add tasks.  A user should be able to run our application with the command line argument *add* followed by a description of the new task.  The new task should be persisted in the database, and the user should receive confirmation that the task was saved. (see Figure 1)
 
 
-### Release 1: Description
-What should students do?
+### Release 1: List the Tasks
+```
+$ bundle exec ruby runner.rb list
 
+1. Walk the dog
+2. Bake a delicious blueberry-glazed cheesecake
+3. Write up that memo and fax it out
+```
+*Figure 2*.  Viewing a list of the tasks.
+
+Now that we can add tasks, let's add a feature that allows users to see the tasks that have been created. (see Figure 2)
 
 ## Conclusion
 Sum up the challenge.
