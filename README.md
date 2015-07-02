@@ -130,6 +130,15 @@ Our application will need to support ...
 In order to support this new feature, we'll need to update our interface (i.e., the commands which our application understands).  What would make for intuitive commands?  We should feel free to modify our previous commands if necessary.
 
 
+### Release 7:  Help Support
+```
+$ bundle exec ruby runner.rb --help
+```
+*Figure 7*.  Asking for help in running the application.
+
+Let's add a help feature.  When users ask for help (see Figure 7), they should see a list of commands they can run with a description of what each command does and how to run each command.
+
+
 ## Conclusion
 Sum up the challenge.
 
