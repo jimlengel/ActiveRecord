@@ -22,8 +22,15 @@ This challenge uses a code base similar to ones we've seen in other challenges. 
 We'll run our program by executing the `runner.rb` file.
 
 
-### Release 0: Description
-What should students do?
+### Release 0: Add a Task
+```
+$ bundle exec ruby runner.rb add Walk the dog
+
+Added "Walk the dog".
+```
+*Figure 1*.  Adding a "Walk the dog" task.
+
+The first feature to build out is the ability to add tasks.  A user should be able to run our application with the command line argument *add* followed by a description of the new task.  The new task should be persisted in the database, and the user should receive confirmation that the task was saved. (see Figure 1)
 
 
 ### Release 1: Description
