@@ -1,134 +1,150 @@
-# ActiveRecord Todos Part 1 
- 
-##Learning Competencies 
+# ActiveRecord Todos
 
-* Model a simple real-world system in Ruby code
-* Translate between different modes of modeling a problem (user stories, diagrams, pseudocode, etc.)
-* Create well-defined classes with a single responsibility
-* Identify and implement classes based on real world requirements
-* Use the model-view-controller pattern to organize code and decouple concerns
-* Model relationships in a relational database (one-to-one, one-to-many, many-to-many)
-* Use Active Record Migrations to create a database
-* Use Active Record Queries to query a database
-* Use Active Record to create Associations between database tables
+## Summary
+This challenge will require us to employ a fairly comprehensive set of the skills that we've been developing at Dev Bootcamp.  We'll take what we've learned about object-oriented programing, the model-view-controller design pattern, Active Record, etc. and put them all together to build a command line application.
 
-##Summary 
+Our challenge is to build a functioning todo list application using a database and command line interaction.  We might have built a command-line todo list application before—perhaps using CSV for persistence.  If so, this is an opportunity to build upon that design and improve our object-oriented implementation.
 
-This challenge is to build a functioning Todo application using a database and command line interaction. You should leverage what you learned in Todo 1.0 and build upon that design, improving your OO implementation. 
 
-From the user's perspective, the final product will look similar to the Todo 1.0.  We are still using the command line and we want to build something that works like this:
+### Design Decisions
+There will be few hard and fast rules regarding implementation (i.e., how to build the application).  Instead, we'll be given features to build out, and we'll have to decide how best to implement them.
 
-```text
-$ ruby todo.rb add Bake a delicious blueberry-glazed cheesecake
-$ ruby todo.rb list
-$ ruby todo.rb delete <task_id>
-$ ruby todo.rb complete <task_id>
+As we work through the features, it will be important to think about the responsibilities of our application.  These responsibilities aren't just user-facing commands like (*add*, *delete*, etc.); they're also back-end responsibilities like reading and writing from the database, parsing command-line arguments, formatting data for printing the to the console, etc.  We'll want to implement solid design choices, keeping concepts such as the [single responsibility principle][Wikipedia SRP] and [separation of concerns][Wikipedia SOC] in mind.
+
+As we work through the releases in this challenge, we'll want to pay close attention to how change impacts our application.  What happens when a new feature is added?  How many parts of our application require changing?  How frustrating is it to make those changes?  Are we modifying unexpected parts of our application?  We should try to employ the advice from [the POODR book][POODR]:  write code that is easily changeable.  
+
+
+## Releases
+
+### Pre-release: Review the Code Base
+This challenge uses a code base similar to ones we've seen in other challenges.  The `Gemfile` specifies the gems the skeleton needs; we need to make sure they're installed on our systems.  And a `Rakefile` is provided.  We can review the tasks that we have available by running `bundle exec rake -T`; all of the tasks we're accustomed to using are available.
+
+We'll run our program by executing the `runner.rb` file.
+
+
+### Release 0: Add a Task
 ```
-
-##Releases
-
-###Release 0 : Up and Running
-* Open the `ar_todo` directory for skeleton code.
-* Run `bundle` from the application root directory
-* Run `$ rake -T ` to see the rake tasks available to you. 
-* Use the  `todo.rb` file in the application root directory, to act as your main program.
-* Look at the README in the skeleton for more information about the purpose of each file.  Spend time looking through the application and familiarizing yourself with each file. 
-
-
-###Release 1 : Enumerate the responsibilities
-
-Start by enumerating the responsibilities of your TODO application.  These aren't just the user-facing commands like "add", "delete", etc.  They're also back-end responsibilities like reading and writing from the `todo.db` file, parsing command-line arguments, and printing the "interface" to the console.
-
-Use these responsibilities to create pseudocode for your program and to design the schema for your database.  
-
-Be sure to have both of these checked off before moving on to code. 
-
-###Release 2 : Build the Database
-
-* Create and run the schema migrations to build your database. Be sure you have designed your database and thought through all the relations.  Then move to active record and build the schema. 
-
-* Use the Faker gem to seed your database.We defined a `rake db:seed` task for you.  All it does is run the code in `db/seeds.rb`. Using Faker, edit `seeds.rb` to create dummy records.  You'll have to put `require 'faker' ` at the top of the `seeds.rb` file.  Feel free to read the `Rakefile` and learn more about how this works.  It won't bite!
-
-###Release 3 : Implement the Commands
-
-#### The list command
-
-When you run
-
+$ bundle exec ruby runner.rb add Walk the dog
+Added "Walk the dog".
 ```
-$ ruby todo.rb list
+*Figure 1*.  Adding a "Walk the dog" task.
+
+The first feature to build out is the ability to add tasks.  A user should be able to run our application with the command line argument *add* followed by a description of the new task.  The new task should be persisted in the database, and the user should receive confirmation that the task was saved. (see Figure 1)
+
+
+### Release 1: List the Tasks
 ```
-
-your application should print out a list of all the TODOs. For example:
-
+$ bundle exec ruby runner.rb list
+1. Walk the dog
+2. Bake a delicious blueberry-glazed cheesecake
+3. Write up that memo and fax it out
 ```
-$ ruby todo.rb list
-1. Bake a delicious blueberry-glazed cheesecake
-2. Write up that memo and fax it out
-3. Conquer the world
+*Figure 2*.  Viewing a list of the tasks.
+
+Now that we can add tasks, let's add a feature that allows users to see the tasks that have been created. (see Figure 2)
+
+
+### Release 2: Delete a Task
 ```
+$ bundle exec ruby runner.rb list
+1. Walk the dog
+2. Bake a delicious blueberry-glazed cheesecake
 
-You'll have to design and build basic controller and model code to make this work.  For example, how does your program know the user wants to "add" a task to their list?
+$ bundle exec ruby runner.rb delete 2
+Deleted "Bake a delicious blueberry-glazed cheesecake"
 
-#### The add command
-
-Requirements:
-
-- A user can add (append) a task to their TODO list
-
-It should work like this
-
-```text
-$ ruby todo.rb add Walk the dog
-Appended "Walk the dog" to your TODO list...
-$
+$ bundle exec ruby runner.rb list
+1. Walk the dog
 ```
+*Figure 3*.  Deleting a task.
 
-####The delete command
+Add a feature that allows users to delete a specific task by running our application with the command line argument *delete* followed by the number displayed next to the task when the list is shown.  (see Figure 3)
 
-Requirements:
 
-- A user can delete a specific task from their TODO list
-
-It should work like this
-
-```text
-$ ruby todo.rb list
-1. Bake a delicious blueberry-glazed cheesecake
-2. Write up that memo and fax it out
-3. Conquer the world
-
-$ ruby todo.rb delete 3
-Deleted "Conquer the world" from your TODO list...
-
-$ ruby todo.rb list
-1. Bake a delicious blueberry-glazed cheesecake
-2. Write up that memo and fax it out
-
-$
+### Release 3: Completing a Task
 ```
+$ bundle exec ruby runner.rb list
+1. [ ] Walk the dog
+2. [ ] Bake a delicious blueberry-glazed cheesecake
 
-####The complete command
+$ bundle exec ruby runner.rb complete 2
+Marked "Bake a delicious blueberry-glazed cheesecake" as complete
 
-Requirements:
+$ bundle exec ruby runner.rb list
+1. [ ] Walk the dog
+2. [X] Bake a delicious blueberry-glazed cheesecake
+```
+*Figure 4*.  Marking a task as complete.
 
-- A user can complete a specific task from their TODO list
-- A completed TODO task will be identified as such when a user uses the `list` command
-
-**Note**: This will require changing the format of `todo.txt` and the code that parses it. 
-
-
-##Optimize Your Learning 
-
-This application has all the moving parts of an MVC application: user input, display code, and data persistence.  In addition it leverages the power of Active Record to manipulate a database of Todo records.
-
-You will need to start with a solid OO design and implement a framework that will allow you to utilize Active Record. 
-
-In your design, it's important to think about what *responsibilities* this application has to fulfill.
-
-Keep things like the [single responsibility principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) and [separation of concerns](http://en.wikipedia.org/wiki/Separation_of_concerns) in mind as you decide what objects and classes belong in your application.
-
-As you work through the iterations, pay close attention to how *change* impacts your application.  When a new feature is added how many files do you have to change?  How frustrating is it to make those changes?
+Now we'll add task completion to our application.  Users should be able to mark tasks as complete by running our application with the command line argument *complete* followed by the number displayed next to the task when the list is shown.  When listing tasks, we'll also want to show users whether or not a task is complete.  (see Figure 4)
 
 
-##Resources
+### Release 4: Listing Outstanding and Completed Tasks
+```
+$ bundle exec ruby runner.rb list
+1. [ ] Walk the dog
+2. [X] Bake a delicious blueberry-glazed cheesecake
+
+$ bundle exec ruby runner.rb list outstanding
+1. [ ] Walk the dog
+
+$ bundle exec ruby runner.rb list completed
+2. [X] Bake a delicious blueberry-glazed cheesecake
+```
+*Figure 5*.  Displaying lists of outstanding and completed tasks.
+
+Add a feature that allow for displaying only outstanding or only completed tasks. (see Figure 5)
+
+
+### Release 5: Tagging Tasks and Filtering Lists
+```
+$ bundle exec ruby runner.rb list
+1. [ ] Walk the dog
+2. [X] Bake a delicious blueberry-glazed cheesecake
+
+$ bundle exec ruby runner.rb tag 1 pet-care dog
+Tagged "Walk the dog" with tags: pet-care, dog
+
+$ bundle exec ruby runner.rb tag
+Tags: "dog", "pet-care"
+
+$ bundle exec ruby runner.rb filter dog
+1. [ ] Walk the dog
+```
+*Figure 6*.  Adding tags to a task, viewing tags, and filtering the list of tasks to just those tagged *dog*.
+
+Add tagging and filtering by tags to our application.  Users should be able to add multiple tags to a specific task, view a list of tags that they've added to tasks, and filter their list of task by a specific tag.  (see Figure 6)
+
+
+### Release 6: Support for Multiple Todo Lists
+We need to support multiple todo lists.  For example, a user might have separate *home* and *work* lists.  Where previously all tasks were lumped together, now we want to organize them into specific lists.
+
+Our application will need to support ...
+
+- Creating and deleting todo lists.
+- Viewing a list of existing todo lists.
+- Viewing the tasks in all lists (all, outstanding, completed, or tagged).
+- Viewing tasks in a particular todo list (all, outstanding, completed, or tagged).
+- Adding, deleting, completing, and tagging a task in a particular list.
+
+In order to support this new feature, we'll need to update our interface (i.e., the commands which our application understands).  What would make for intuitive commands?  We should feel free to modify our previous commands if necessary.
+
+
+### Release 7:  Help Support
+```
+$ bundle exec ruby runner.rb --help
+```
+*Figure 7*.  Asking for help in running the application.
+
+Let's add a help feature.  When users ask for help (see Figure 7), they should see a list of commands they can run with a description of what each command does and how to run each command.
+
+
+## Conclusion
+This challenge is more open-ended than most other challenges we've encountered.  How was it being directed what to build without much guidance on how to build it?  Was it hard to know where to start?  Did we know which tools would be effective in different situations?  Were we able to make good design decisions or were we more interested in just making it work?
+
+As noted in the *Summary*, this challenge provides a comprehensive look at the material we've covered at Dev Bootcamp.  Reflect back on this challenge.  Where were you strong?  Where do you need to improve?  
+
+
+[POODR]: http://www.poodr.com/
+[Wikipedia SOC]: http://en.wikipedia.org/wiki/Separation_of_concerns
+[Wikipedia SRP]: http://en.wikipedia.org/wiki/Single_responsibility_principle
