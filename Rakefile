@@ -140,7 +140,7 @@ namespace :generate do
   desc "Create an empty model spec in spec, e.g., rake generate:spec NAME=user"
   task :spec do
     unless ENV.has_key?('NAME')
-      raise "Must specificy migration name, e.g., rake generate:spec NAME=user"
+      raise "Must specificy model name, e.g., rake generate:spec NAME=user"
     end
 
     name     = ENV['NAME'].camelize
